@@ -1,38 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GDDTracker</title>
 
 <style>
 
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  background: black;
+  margin:0;
+  padding:0;
+  height:100%;
+  background:black;
 }
 
 video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  cursor: pointer;
+  width:100vw;
+  height:100vh;
+  object-fit:contain;
+  cursor:pointer;
 }
 
 </style>
-
 </head>
 
-<body>
+<body onclick="window.location.href='https://apps.apple.com/us/app/gddtracker/id6752981800'">
 
-<a href="https://apps.apple.com/us/app/gddtracker/id6752981800">
-  <video autoplay muted loop playsinline>
-    <source src="gddtracker-demo.mp4" type="video/mp4">
-  </video>
-</a>
+<video autoplay muted loop playsinline>
+<source src="gddtracker-demo.mp4" type="video/mp4">
+</video>
 
 </body>
+
 </html>
