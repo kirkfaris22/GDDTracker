@@ -7,59 +7,19 @@
 
 <style>
 
-body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-    background:#f5f5f7;
-    color:#1d1d1f;
-    text-align:center;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: black;
 }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:60px 20px;
-}
-
-h1{
-    font-size:48px;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    font-size:20px;
-    color:#6e6e73;
-    margin-bottom:40px;
-}
-
-.video-container{
-    margin:40px 0;
-}
-
-video{
-    width:350px;
-    max-width:90%;
-    border-radius:30px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.2);
-}
-
-.appstore-btn{
-    margin-top:30px;
-    display:inline-block;
-}
-
-.features{
-    margin-top:80px;
-}
-
-.feature{
-    margin-bottom:30px;
-}
-
-.footer{
-    margin-top:100px;
-    font-size:14px;
-    color:#6e6e73;
+video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 </style>
@@ -68,47 +28,11 @@ video{
 
 <body>
 
-<div class="container">
-
-<h1>GDDTracker</h1>
-
-<p class="subtitle">
-Track Growing Degree Days and stay ahead of your lawn care schedule.
-</p>
-
-<div class="video-container">
-<video controls autoplay muted loop>
-<source src="gddtracker-demo.mp4" type="video/mp4">
-</video>
-</div>
-
-<a class="appstore-btn" href="https://apps.apple.com/us/app/gddtracker/id6752981800">
-<img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="220">
+<a href="https://apps.apple.com/us/app/gddtracker/id6752981800">
+  <video autoplay muted loop playsinline>
+    <source src="gddtracker-demo.mp4" type="video/mp4">
+  </video>
 </a>
-
-<div class="features">
-
-<h2>Features</h2>
-
-<div class="feature">
-<p>🌱 Track Growing Degree Days in real time</p>
-</div>
-
-<div class="feature">
-<p>🌤 Monitor temperature trends for accurate lawn care timing</p>
-</div>
-
-<div class="feature">
-<p>📈 Plan treatments based on seasonal GDD data</p>
-</div>
-
-</div>
-
-<div class="footer">
-<p>© 2026 GDDTracker</p>
-</div>
-
-</div>
 
 </body>
 </html>
