@@ -106,12 +106,14 @@
         width: 34px;
         height: 34px;
         border-radius: 9px;
-        background: var(--accent-green-dim);
-        border: 1px solid rgba(52,211,153,0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--accent-green);
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+    .logo-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
     .logo-text {
         font-family: 'Fraunces', serif;
@@ -368,7 +370,7 @@
 <nav class="top-bar">
     <a href="https://gdd-tracker.com" class="logo">
         <div class="logo-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m6.343 6.343 2.828 2.829"/><path d="M2 12h4"/><path d="M12 18v4"/><path d="m17.657 6.343-2.829 2.829"/><path d="M22 12h-4"/></svg>
+            <img src="images/icon.png" alt="GDD-Tracker">
         </div>
         <span class="logo-text">GDD<span>-Tracker</span></span>
     </a>
@@ -376,6 +378,10 @@
         <a href="https://gdd-tracker.com/support" class="nav-link hide-mobile">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
             Support
+        </a>
+        <a href="https://gdd-tracker.com/privacy" class="nav-link hide-mobile">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            Privacy
         </a>
         <a href="https://apps.apple.com/us/app/gddtracker/id6752981800" class="nav-link primary">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"/><path d="M18 13l-6 6-6-6"/></svg>
