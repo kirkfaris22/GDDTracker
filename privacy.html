@@ -1,133 +1,511 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy - GDD Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — GDD-Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: light dark; }
-  body { font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-  article { max-width: 760px; margin: 0 auto; padding: 2rem 1rem; }
-  h1, h2, h3 { line-height: 1.25; }
-  h1 { font-size: 2rem; margin-top: 0; }
-  h2 { font-size: 1.5rem; margin-top: 2rem; }
-  h3 { font-size: 1.25rem; margin-top: 1.5rem; }
-  ul, ol { padding-left: 1.25rem; }
-  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-  a { color: #0a84ff; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  hr { border: 0; border-top: 1px solid rgba(127,127,127,0.3); margin: 2rem 0; }
+    :root {
+        --bg: #0c0f14;
+        --surface: #141820;
+        --surface-hover: #1a2030;
+        --border: rgba(255,255,255,0.06);
+        --border-hover: rgba(255,255,255,0.12);
+        --text: #e8eaf0;
+        --text-muted: #7a8299;
+        --accent-green: #34d399;
+        --accent-green-dim: rgba(52,211,153,0.08);
+        --accent-blue: #60a5fa;
+        --accent-blue-dim: rgba(96,165,250,0.08);
+        --radius: 16px;
+        --radius-sm: 10px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* — Ambient background — */
+    .bg-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .bg-glow::before {
+        content: '';
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        top: -120px;
+        right: -100px;
+        background: radial-gradient(circle, rgba(52,211,153,0.06) 0%, transparent 70%);
+        animation: drift 18s ease-in-out infinite alternate;
+    }
+    .bg-glow::after {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        bottom: -80px;
+        left: -60px;
+        background: radial-gradient(circle, rgba(96,165,250,0.05) 0%, transparent 70%);
+        animation: drift 22s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes drift {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(40px, 30px) scale(1.15); }
+    }
+
+    /* — Grain overlay — */
+    .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px;
+    }
+
+    /* — Layout — */
+    .wrapper {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 60px 24px 100px;
+    }
+
+    /* — Header — */
+    .page-header {
+        text-align: center;
+        margin-bottom: 56px;
+        animation: fadeUp 0.7s ease-out both;
+    }
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 100px;
+        background: var(--accent-blue-dim);
+        border: 1px solid rgba(96,165,250,0.12);
+        color: var(--accent-blue);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .badge svg { flex-shrink: 0; }
+    .page-header h1 {
+        font-family: 'Fraunces', serif;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+    }
+    .page-header .updated {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+    }
+
+    /* — Back link — */
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 32px;
+        transition: color 0.25s;
+        animation: fadeUp 0.7s ease-out both;
+    }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { transition: transform 0.25s; }
+    .back-link:hover svg { transform: translateX(-3px); }
+
+    /* — Content sections — */
+    .section {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px 30px;
+        margin-bottom: 16px;
+        transition: border-color 0.3s;
+        animation: fadeUp 0.7s ease-out both;
+    }
+    .section:hover {
+        border-color: var(--border-hover);
+    }
+    .section:nth-child(2) { animation-delay: 0.05s; }
+    .section:nth-child(3) { animation-delay: 0.1s; }
+    .section:nth-child(4) { animation-delay: 0.15s; }
+    .section:nth-child(5) { animation-delay: 0.2s; }
+    .section:nth-child(6) { animation-delay: 0.25s; }
+    .section:nth-child(7) { animation-delay: 0.3s; }
+    .section:nth-child(8) { animation-delay: 0.35s; }
+    .section:nth-child(9) { animation-delay: 0.4s; }
+    .section:nth-child(10) { animation-delay: 0.45s; }
+    .section:nth-child(11) { animation-delay: 0.5s; }
+    .section:nth-child(12) { animation-delay: 0.55s; }
+
+    .section h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.3rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .section h2 .icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: var(--accent-green-dim);
+        border: 1px solid rgba(52,211,153,0.12);
+        color: var(--accent-green);
+    }
+
+    .section h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        color: var(--accent-blue);
+    }
+
+    .section p {
+        color: var(--text-muted);
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 10px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px 0;
+    }
+    .section ul:last-child { margin-bottom: 0; }
+
+    .section ul li {
+        position: relative;
+        padding-left: 20px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.75;
+    }
+    .section ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent-green);
+        opacity: 0.45;
+    }
+    .section ul li strong {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .section a {
+        color: var(--accent-blue);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .section a:hover {
+        color: #93c5fd;
+        text-decoration: underline;
+    }
+
+    /* — Do NOT list (special styling) — */
+    .do-not li::before {
+        background: var(--accent-green) !important;
+        opacity: 0.7 !important;
+        border-radius: 0 !important;
+        width: 6px !important;
+        height: 2px !important;
+        top: 12px !important;
+    }
+
+    /* — Contact card — */
+    .contact-card {
+        background: linear-gradient(135deg, rgba(52,211,153,0.06), rgba(96,165,250,0.06));
+        border: 1px solid rgba(52,211,153,0.12);
+    }
+    .contact-card p {
+        color: var(--text);
+        font-size: 0.95rem;
+    }
+    .contact-card a {
+        color: var(--accent-green);
+    }
+    .contact-card a:hover {
+        color: #5eead4;
+    }
+
+    /* — Footer — */
+    .footer {
+        text-align: center;
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        font-size: 0.82rem;
+        opacity: 0.6;
+        animation: fadeUp 0.7s ease-out 0.6s both;
+    }
+
+    /* — Responsive — */
+    @media (max-width: 640px) {
+        .wrapper { padding: 40px 18px 80px; }
+        .section { padding: 24px 20px; }
+    }
+
+    /* — Animations — */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 </head>
 <body>
-<article>
-<h1>Privacy Policy for GDD Tracker</h1>
-<p><strong>Last Updated: March 9, 2026</strong></p>
-<h2>Introduction</h2>
-<p>GDD Tracker ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our iOS application.</p>
-<h2>Information We Collect</h2>
-<h3>Location Data</h3>
-<ul>
-<li><strong>What we collect:</strong> Your device's location (latitude and longitude)</li>
-<li><strong>Why we collect it:</strong> To provide accurate local weather data and calculate Growing Degree Days specific to your lawn's location</li>
-<li><strong>How we use it:</strong> Location data is used solely to fetch weather information from our weather data provider</li>
-<li><strong>Storage:</strong> Location coordinates are stored locally on your device and in your iCloud account (if iCloud sync is enabled)</li>
-<li><strong>Sharing:</strong> We share your location coordinates with our weather data provider to retrieve forecast data</li>
-</ul>
-<h3>Usage Data</h3>
-<ul>
-<li><strong>What we collect:</strong> App usage patterns, feature interactions, and crash reports (via Apple's built-in analytics)</li>
-<li><strong>Why we collect it:</strong> To improve app performance, fix bugs, and understand how users interact with the app</li>
-<li><strong>How we use it:</strong> Aggregated, anonymized data helps us make the app better</li>
-<li><strong>Control:</strong> You can disable analytics in your device Settings → Privacy &amp; Security → Analytics &amp; Improvements</li>
-</ul>
-<h3>Subscription Data</h3>
-<ul>
-<li><strong>What we collect:</strong> Subscription status, purchase history, and transaction information</li>
-<li><strong>Why we collect it:</strong> To manage your subscription and provide access to premium features</li>
-<li><strong>How we use it:</strong> Processed by Apple through StoreKit; we receive only subscription status</li>
-<li><strong>Storage:</strong> Managed entirely by Apple; we do not store payment information</li>
-</ul>
-<h3>User-Created Content</h3>
-<ul>
-<li><strong>What we collect:</strong> Lawn names, GDD settings, application records you create in the app</li>
-<li><strong>Storage:</strong> Stored locally on your device and optionally in your iCloud account</li>
-<li><strong>Sharing:</strong> Never shared with third parties</li>
-</ul>
-<h2>How We Use Your Information</h2>
-<p>We use the collected information to:</p>
-<ul>
-<li>Provide accurate Growing Degree Day calculations</li>
-<li>Fetch local weather forecasts</li>
-<li>Send notifications when treatment applications are due</li>
-<li>Sync your data across your Apple devices (via iCloud)</li>
-<li>Improve app functionality and user experience</li>
-<li>Provide customer support</li>
-</ul>
-<h2>Data Sharing and Third Parties</h2>
-<h3>Weather Data Provider</h3>
-<p>We share your location coordinates with Apple Weather to retrieve weather forecasts. Please review their privacy policy at <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a>.</p>
-<h3>Apple Services</h3>
-<ul>
-<li><strong>iCloud:</strong> If enabled, your app data syncs via iCloud (managed by Apple)</li>
-<li><strong>StoreKit:</strong> Subscription management is handled by Apple</li>
-<li><strong>Push Notifications:</strong> Delivered through Apple Push Notification Service</li>
-</ul>
-<h3>We Do NOT:</h3>
-<ul>
-<li>Sell your personal information</li>
-<li>Share your data with advertisers</li>
-<li>Use your data for marketing purposes</li>
-<li>Share data with any third parties except as listed above</li>
-</ul>
-<h2>Data Security</h2>
-<p>We implement industry-standard security measures:</p>
-<ul>
-<li>All data stored locally uses iOS encryption</li>
-<li>iCloud data is encrypted in transit and at rest</li>
-<li>Location data is transmitted securely over HTTPS</li>
-<li>No sensitive data is stored on our servers</li>
-</ul>
-<h2>Your Rights</h2>
-<p>You have the right to:</p>
-<ul>
-<li><strong>Access:</strong> View all data stored in the app through the app interface</li>
-<li><strong>Delete:</strong> Remove your data by deleting the app from your device</li>
-<li><strong>Opt-out:</strong> Disable location services or notifications in Settings</li>
-<li><strong>Export:</strong> Your data is stored in standard formats within the app</li>
-</ul>
-<h2>Children's Privacy</h2>
-<p>GDD Tracker is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe a child has provided us with personal information, please contact us.</p>
-<h2>Changes to This Policy</h2>
-<p>We may update this Privacy Policy periodically. We will notify you of significant changes through:</p>
-<ul>
-<li>An in-app notification</li>
-<li>An update to this document with a new "Last Updated" date</li>
-</ul>
-<p>Continued use of the app after changes constitutes acceptance of the updated policy.</p>
-<h2>Data Retention</h2>
-<ul>
-<li><strong>Account deletion:</strong> Delete the app to remove all local data</li>
-<li><strong>iCloud data:</strong> Managed by Apple; delete from Settings → [Your Name] → iCloud → Manage Storage</li>
-<li><strong>Subscription data:</strong> Retained by Apple for transaction history purposes</li>
-</ul>
-<h2>Contact Us</h2>
-<p>If you have questions about this Privacy Policy or your data, contact us at:</p>
-<p><strong>Email:</strong> <a href="mailto:support@gdd-tracker.com">support@gdd-tracker.com</a><br>
-<strong>Website:</strong> <a href="https://gdd-tracker.com">https://gdd-tracker.com</a><br>
-<strong>Developer:</strong> Kirk Faris</p>
-<h2>Legal Compliance</h2>
-<p>This app complies with:</p>
-<ul>
-<li>California Consumer Privacy Act (CCPA)</li>
-<li>General Data Protection Regulation (GDPR) where applicable</li>
-<li>Apple App Store Guidelines</li>
-<li>Children's Online Privacy Protection Act (COPPA)</li>
-</ul>
-<hr>
-<p><strong>GDD Tracker</strong><br>
-© 2026 Kirk Faris. All rights reserved.</p>
-</article>
+
+<div class="bg-glow"></div>
+<div class="grain"></div>
+
+<div class="wrapper">
+
+    <a href="https://gdd-tracker.com" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to GDD-Tracker
+    </a>
+
+    <header class="page-header">
+        <div class="badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            Legal
+        </div>
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last Updated: March 9, 2026</p>
+    </header>
+
+    <!-- Introduction -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
+            Introduction
+        </h2>
+        <p>GDD Tracker ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our iOS application.</p>
+    </div>
+
+    <!-- Information We Collect -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span>
+            Information We Collect
+        </h2>
+
+        <h3>Location Data</h3>
+        <ul>
+            <li><strong>What we collect:</strong> Your device's location (latitude and longitude)</li>
+            <li><strong>Why we collect it:</strong> To provide accurate local weather data and calculate Growing Degree Days specific to your lawn's location</li>
+            <li><strong>How we use it:</strong> Location data is used solely to fetch weather information from our weather data provider</li>
+            <li><strong>Storage:</strong> Location coordinates are stored locally on your device and in your iCloud account (if iCloud sync is enabled)</li>
+            <li><strong>Sharing:</strong> We share your location coordinates with our weather data provider to retrieve forecast data</li>
+        </ul>
+
+        <h3>Usage Data</h3>
+        <ul>
+            <li><strong>What we collect:</strong> App usage patterns, feature interactions, and crash reports (via Apple's built-in analytics)</li>
+            <li><strong>Why we collect it:</strong> To improve app performance, fix bugs, and understand how users interact with the app</li>
+            <li><strong>How we use it:</strong> Aggregated, anonymized data helps us make the app better</li>
+            <li><strong>Control:</strong> You can disable analytics in your device Settings &rarr; Privacy &amp; Security &rarr; Analytics &amp; Improvements</li>
+        </ul>
+
+        <h3>Subscription Data</h3>
+        <ul>
+            <li><strong>What we collect:</strong> Subscription status, purchase history, and transaction information</li>
+            <li><strong>Why we collect it:</strong> To manage your subscription and provide access to premium features</li>
+            <li><strong>How we use it:</strong> Processed by Apple through StoreKit; we receive only subscription status</li>
+            <li><strong>Storage:</strong> Managed entirely by Apple; we do not store payment information</li>
+        </ul>
+
+        <h3>User-Created Content</h3>
+        <ul>
+            <li><strong>What we collect:</strong> Lawn names, GDD settings, application records you create in the app</li>
+            <li><strong>Storage:</strong> Stored locally on your device and optionally in your iCloud account</li>
+            <li><strong>Sharing:</strong> Never shared with third parties</li>
+        </ul>
+    </div>
+
+    <!-- How We Use Your Information -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></span>
+            How We Use Your Information
+        </h2>
+        <p>We use the collected information to:</p>
+        <ul>
+            <li>Provide accurate Growing Degree Day calculations</li>
+            <li>Fetch local weather forecasts</li>
+            <li>Send notifications when treatment applications are due</li>
+            <li>Sync your data across your Apple devices (via iCloud)</li>
+            <li>Improve app functionality and user experience</li>
+            <li>Provide customer support</li>
+        </ul>
+    </div>
+
+    <!-- Data Sharing and Third Parties -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span>
+            Data Sharing &amp; Third Parties
+        </h2>
+
+        <h3>Weather Data Provider</h3>
+        <p>We share your location coordinates with Apple Weather to retrieve weather forecasts. Please review their privacy policy at <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a>.</p>
+
+        <h3>Apple Services</h3>
+        <ul>
+            <li><strong>iCloud:</strong> If enabled, your app data syncs via iCloud (managed by Apple)</li>
+            <li><strong>StoreKit:</strong> Subscription management is handled by Apple</li>
+            <li><strong>Push Notifications:</strong> Delivered through Apple Push Notification Service</li>
+        </ul>
+
+        <h3>We Do NOT:</h3>
+        <ul class="do-not">
+            <li>Sell your personal information</li>
+            <li>Share your data with advertisers</li>
+            <li>Use your data for marketing purposes</li>
+            <li>Share data with any third parties except as listed above</li>
+        </ul>
+    </div>
+
+    <!-- Data Security -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            Data Security
+        </h2>
+        <p>We implement industry-standard security measures:</p>
+        <ul>
+            <li>All data stored locally uses iOS encryption</li>
+            <li>iCloud data is encrypted in transit and at rest</li>
+            <li>Location data is transmitted securely over HTTPS</li>
+            <li>No sensitive data is stored on our servers</li>
+        </ul>
+    </div>
+
+    <!-- Your Rights -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            Your Rights
+        </h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li><strong>Access:</strong> View all data stored in the app through the app interface</li>
+            <li><strong>Delete:</strong> Remove your data by deleting the app from your device</li>
+            <li><strong>Opt-out:</strong> Disable location services or notifications in Settings</li>
+            <li><strong>Export:</strong> Your data is stored in standard formats within the app</li>
+        </ul>
+    </div>
+
+    <!-- Children's Privacy -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m4.93 4.93 14.14 14.14"/></svg></span>
+            Children's Privacy
+        </h2>
+        <p>GDD Tracker is not intended for children under 13. We do not knowingly collect information from children under 13. If you believe a child has provided us with personal information, please contact us.</p>
+    </div>
+
+    <!-- Changes to This Policy -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span>
+            Changes to This Policy
+        </h2>
+        <p>We may update this Privacy Policy periodically. We will notify you of significant changes through:</p>
+        <ul>
+            <li>An in-app notification</li>
+            <li>An update to this document with a new "Last Updated" date</li>
+        </ul>
+        <p>Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <!-- Data Retention -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 5H3"/><path d="M6 5v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5"/><path d="M9 2h6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg></span>
+            Data Retention
+        </h2>
+        <ul>
+            <li><strong>Account deletion:</strong> Delete the app to remove all local data</li>
+            <li><strong>iCloud data:</strong> Managed by Apple; delete from Settings &rarr; [Your Name] &rarr; iCloud &rarr; Manage Storage</li>
+            <li><strong>Subscription data:</strong> Retained by Apple for transaction history purposes</li>
+        </ul>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="section contact-card">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            Contact Us
+        </h2>
+        <p>If you have questions about this Privacy Policy or your data, contact us at:</p>
+        <p><strong>Email:</strong> <a href="mailto:support@gdd-tracker.com">support@gdd-tracker.com</a></p>
+        <p><strong>Website:</strong> <a href="https://gdd-tracker.com">gdd-tracker.com</a></p>
+        <p><strong>Developer:</strong> Kirk Faris</p>
+    </div>
+
+    <!-- Legal Compliance -->
+    <div class="section">
+        <h2>
+            <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg></span>
+            Legal Compliance
+        </h2>
+        <p>This app complies with:</p>
+        <ul>
+            <li>California Consumer Privacy Act (CCPA)</li>
+            <li>General Data Protection Regulation (GDPR) where applicable</li>
+            <li>Apple App Store Guidelines</li>
+            <li>Children's Online Privacy Protection Act (COPPA)</li>
+        </ul>
+    </div>
+
+    <footer class="footer">
+        <p><strong>GDD Tracker</strong></p>
+        <p>&copy; 2026 Kirk Faris. All rights reserved.</p>
+    </footer>
+
+</div>
+
 </body>
 </html>
-
