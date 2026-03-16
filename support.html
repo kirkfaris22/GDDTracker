@@ -91,6 +91,23 @@
             padding: 60px 24px 100px;
         }
 
+        /* — Back link — */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            transition: color 0.25s;
+            animation: fadeUp 0.7s ease-out both;
+        }
+        .back-link:hover { color: var(--text); }
+        .back-link svg { transition: transform 0.25s; }
+        .back-link:hover svg { transform: translateX(-3px); }
+
         /* — Header — */
         .page-header {
             text-align: center;
@@ -344,6 +361,11 @@
 
 <div class="wrapper">
 
+    <a href="https://gdd-tracker.com" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to GDD-Tracker
+    </a>
+
     <header class="page-header">
         <div class="badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
@@ -367,7 +389,7 @@
                 <li>Account &amp; billing questions</li>
                 <li>Getting started guidance</li>
             </ul>
-            <a href="mailto:Support@GDD-Tracker.com" class="card-btn">
+            <a href="/cdn-cgi/l/email-protection#6635131616091412262122224b321407050d03144805090b" class="card-btn">
                 Email Support
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -385,7 +407,7 @@
                 <li>Workflow improvements</li>
                 <li>Integration requests</li>
             </ul>
-            <a href="mailto:Features@GDD-Tracker.com" class="card-btn">
+            <a href="/cdn-cgi/l/email-protection#4f092a2e3b3a3d2a3c0f080b0b621b3d2e2c242a3d612c2022" class="card-btn">
                 Request a Feature
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -409,23 +431,11 @@
                     Which email should I use?
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
                 </div>
-                <div class="faq-a"><div class="faq-a-inner">Use <strong>Support@GDD-Tracker.com</strong> for bugs, account issues, or general help. Use <strong>Features@GDD-Tracker.com</strong> to suggest new functionality or improvements you'd like to see.</div></div>
+                <div class="faq-a"><div class="faq-a-inner">Use <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f1a28481819e8385b1b6b5b5dca58390929a9483df929e9c">[email&#160;protected]</a></strong> for bugs, account issues, or general help. Use <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ecaa898d98999e899facaba8a8c1b89e8d8f87899ec28f8381">[email&#160;protected]</a></strong> to suggest new functionality or improvements you'd like to see.</div></div>
             </div>
             <div class="faq-item">
                 <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
                     How do I write a good feature request?
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
                 </div>
-                <div class="faq-a"><div class="faq-a-inner">Describe the problem you're facing, the outcome you'd like, and any context about your workflow. The more detail you provide, the better we can evaluate and prioritize your request.</div></div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        &copy; 2026 GDD-Tracker. All rights reserved.
-    </footer>
-
-</div>
-
-</body>
-</html>
+                <div class="faq-a"><div class="faq-a-inner">Describe the proble
